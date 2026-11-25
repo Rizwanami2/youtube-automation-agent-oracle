@@ -1,0 +1,20 @@
+[Unit]
+Description=YouTube Automation Agent
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/youtube-automation-agent
+ExecStart=/usr/bin/node index.js
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin
+
+# Logging
+StandardOutput=append:/var/log/youtube-agent.log
+StandardError=append:/var/log/youtube-agent.error.log
+
+[Install]
+WantedBy=multi-user.target
